@@ -14,7 +14,9 @@ public class LogParser
 
     public string[] SplitLogLine(string text)
     {
-        throw new NotImplementedException($"Please implement the LogParser.SplitLogLine() method");
+        // any string that has a first character of "<" and a last character of ">"
+        // and any combination of the following characters "^", "*", "=" and "-" in between
+        return Regex.Split(text, @"\<[\^\*\=\-]+\>");
     }
 
     public int CountQuotedPasswords(string lines)
