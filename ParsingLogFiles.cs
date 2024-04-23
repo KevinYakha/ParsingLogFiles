@@ -1,11 +1,15 @@
 using System;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
 public class LogParser
 {
     public bool IsValidLine(string text)
     {
-        throw new NotImplementedException($"Please implement the LogParser.IsValidLine() method");
+        Regex regex = new Regex(@"^\[TRC\]|^\[DBG\]|^\[INF\]|^\[WRN\]|^\[ERR\]|^\[FTL\]");
+        if(regex.IsMatch(text))
+            return true;
+        return false;
     }
 
     public string[] SplitLogLine(string text)
