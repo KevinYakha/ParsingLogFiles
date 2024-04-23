@@ -31,6 +31,15 @@ public class LogParser
 
     public string[] ListLinesWithPasswords(string[] lines)
     {
-        throw new NotImplementedException($"Please implement the LogParser.ListLinesWithPasswords() method");
+        string[] badPasswords = new string[lines.Length];
+        Regex regex = new Regex(@"password\S+", RegexOptions.IgnoreCase);
+        for (int i = 0; i < lines.Length; i++)
+        {
+            if (regex.IsMatch(lines[i]))
+                badPasswords[i] = (regex.Match(lines[i])).Value + ": " + lines[i];
+            else
+                badPasswords[i] = "--------: " + lines[i];
+        }
+        return badPasswords;
     }
 }
